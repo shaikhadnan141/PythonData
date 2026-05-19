@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>My Python Portfolio</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: "Inter", sans-serif;
+            display: flex;
+            height: 100vh;
+            background: #0d1117;
+            color: #e6edf3;
+        }
+
+        /* Sidebar */
+        #sidebar {
+            width: 300px;
+            background: #161b22;
+            padding: 20px;
+            overflow-y: auto;
+            border-right: 1px solid #30363d;
+        }
+
+        #sidebar h2 {
+            margin-top: 0;
+            font-size: 22px;
+            font-weight: 600;
+        }
+
+        .file {
+            margin: 5px 0;
+            padding: 10px;
+            background: #21262d;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .file:hover {
+            background: #30363d;
+        }
+
+        /* Code Display Area */
+        #main {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        pre {
+            background: #0d1117;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #30363d;
+            overflow-x: auto;
+            font-size: 15px;
+            line-height: 1.5;
+        }
+
+        .loading {
+            font-size: 18px;
+            opacity: 0.7;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Sidebar -->
+    <div id="sidebar">
+        <h2>📁 Python Files</h2>
+        <div id="fileList"></div>
+    </div>
+
+    <!-- Main Code View -->
+    <div id="main">
+        <h2>👋 Select a file to view its code</h2>
+        <pre id="codeArea"></pre>
+    </div>
+
+    <script>
+        // Auto-generated file list (you can modify manually)
+        const files = [
+            "Dictionary/sc.py/sc.py",
+            "Dictionary/tempCodeRunnerFile.python",
+            "List & Tupple/Methods/append.py",
+            "List & Tupple/Methods/insert.py",
+            "List & Tupple/Methods/pop.py",
+            "List & Tupple/Methods/remove.py",
+            "string/length.py",
+            "string/lower.py",
+            "string/swap.py",
+            "string/title.py",
+            "string/upper.py"
+        ];
+
+        const fileListDiv = document.getElementById("fileList");
+        const codeArea = document.getElementById("codeArea");
+
+        // Build clickable file list
+        files.forEach(file => {
+            const div = document.createElement("div");
+            div.className = "file";
+            div.innerText = file;
+            div.onclick = () => loadFile(file);
+            fileListDiv.appendChild(div);
+        });
+
+        // Load selected file
+        function loadFile(path) {
+            codeArea.innerHTML = "⏳ Loading...";
+            codeArea.classList.add("loading");
+
+            fetch(path)
+                .then(res => res.text())
+                .then(text => {
+                    codeArea.classList.remove("loading");
+                    codeArea.textContent = text;
+                })
+                .catch(err => {
+                    codeArea.textContent = "❌ Unable to load file!";
+                });
+        }
+    </script>
+
+</body>
+</html>
