@@ -1,0 +1,15 @@
+# Charastics of  Tupple
+1)immutable
+2)heterogenious
+3)for List we have to use Square Bracket
+   and for Tupple we have to use paranthesis ()
+
+*  you can use this below given methods in Tupple
+
+leg()
+min()
+count()
+index()
+sorted()
+
+

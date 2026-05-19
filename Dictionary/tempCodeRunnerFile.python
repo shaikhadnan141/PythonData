@@ -1,0 +1,11 @@
+lst_1= [1,2,3,4,5]
+check = int(input('enter a number='))
+if check not in lst_1:
+    print('sorry their was not found')
+else:
+    print('yes found')  
+    
+    
+     
+    
+    
